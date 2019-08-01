@@ -31,8 +31,12 @@
     8.接入sdk的app需要在applicaiton的attachBaseContext方法中执行SdkShell.init方法解壳;
    
    具体可以参考demo                                                    
-    
-    
+##### tip 核心技术
+    1.gradle插件
+    2.ndk开发（解壳代码需要放在native层；ndk读取assets）
+    3.动态加载dex（thinker原理理解）
+    4.android中的classLoader理解
+    5.java文件解析器
 
 
 
