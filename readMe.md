@@ -1,11 +1,11 @@
-思路：
->1.生成两个jar（一个不包含方法实体的jar A 跟一个真正的jar B）
->2.A为了提供给使用者引用，B需要进行加密之后放入assets目录下
->3.运行的时候动态加载B
+思路：\n
+1.生成两个jar（一个不包含方法实体的jar A 跟一个真正的jar B）\n
+2.A为了提供给使用者引用，B需要进行加密之后放入assets目录下 \n
+3.运行的时候动态加载B \n
 
 Q：如何生成A？
     利用sun下的api
-
+    参考：http://ragnraok.github.io/using-jdk-parser.html
 Q：如何动态加载B？
     参考tinker原理
     https://juejin.im/post/5b640deef265da0f86544bb1
@@ -20,25 +20,7 @@ Q：整体的方案？
     7.从dexClassLoader中取出jarB的Element C
     8.反射获取PathClassLoader中的ElmentList，将C放入该list的前面
 
-进度：
-  7.26 done(证明了整体思路的方向是对的)
-    1. 手动copy jar进入getDir("reinforce")下
-    2. 动态加载该jar
-
-  7.29 done（抽空java文件中的方法）
-    根据 java 文件掏空方法，生成空壳java文件
-    使用jdk中解析java文件的api
-    参考：http://ragnraok.github.io/using-jdk-parser.html
-
-  7.30 done 
-    合并两个aar，完成gradle插件（非加密版本）
-
-  7.31 java 方案done
-    整理整个方案
-    todo java->c++
-    
-  8.1 done(完成整个方案)
-    使用步骤：
+使用步骤：
     1.sdk新建两个flavor，一个是内部使用的，一个是提供给外部使用的
     2.sdk依赖reinfoce插件，填写配置参数changeMethod跟mergeAar
     3.sdk执行changeMethod
